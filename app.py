@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 
 st.set_page_config(
@@ -10,14 +10,14 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Launch date
-launch_date = datetime(2026, 1, 1, 0, 0, 0)
+# Launch date (15 days from now)
+launch_date = datetime.now() + timedelta(days=15)
 
 # CSS
 st.markdown("""
 <style>
 
-/* Import elegant luxury font */
+/* Luxury Font */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500;1,600&display=swap');
 
 /* Hide Streamlit UI */
@@ -30,7 +30,7 @@ footer {visibility: hidden;}
     background: #F2D3C5;
 }
 
-/* Main layout */
+/* Layout */
 .block-container {
     padding-top: 1rem;
     max-width: 1200px;
@@ -46,6 +46,24 @@ footer {visibility: hidden;}
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Logo Center */
+.logo-wrapper {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+}
+
+/* Ensure image stays centered */
+.logo-wrapper img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+    max-width: 60vw;
 }
 
 /* Hero */
@@ -79,6 +97,7 @@ footer {visibility: hidden;}
     gap: 60px;
     margin-top: 40px;
     margin-bottom: 80px;
+    flex-wrap: wrap;
 }
 
 .time-box {
@@ -105,6 +124,11 @@ footer {visibility: hidden;}
     display: flex;
     justify-content: space-around;
     text-align: center;
+    flex-wrap: wrap;
+}
+
+.feature-card {
+    margin: 20px;
 }
 
 .feature-card h3 {
@@ -127,17 +151,39 @@ footer {visibility: hidden;}
     font-size: 15px;
     font-family: 'Cormorant Garamond', serif;
 }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+
+.hero h1 {
+    font-size: 48px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+.time-number {
+    font-size: 40px;
+}
+
+.countdown {
+    gap: 30px;
+}
+
+}
+
 </style>
 """, unsafe_allow_html=True)
 
-# Logo center
+# Logo centered for all screen sizes
 if os.path.exists("logo.png"):
     image = Image.open("logo.png")
-    c1, c2, c3 = st.columns([2,2,2])
-    with c2:
-        st.image(image, width=220)
+    st.markdown('<div class="logo-wrapper">', unsafe_allow_html=True)
+    st.image(image)
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Hero
+# Hero section
 st.markdown("""
 <div class="hero">
     <h1>Launching Soon</h1>
@@ -148,10 +194,11 @@ st.markdown("""
 # Countdown placeholder
 placeholder = st.empty()
 
-# Features + footer placeholder
+# Bottom placeholder
 bottom = st.empty()
 
 while True:
+
     now = datetime.now()
     remaining = launch_date - now
 
