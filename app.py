@@ -160,7 +160,7 @@ st.markdown("""
 <div class="hero">
     <h1>Launching Soon</h1>
     <p>Where you become your own muse.<br>
-    Timeless shirts & coords for polished comfort.🪞✨🦢</p>
+    Timeless shirts & coords for polished comfort.</p>
 </div>
 """, unsafe_allow_html=True)
 
