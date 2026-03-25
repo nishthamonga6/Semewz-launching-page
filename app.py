@@ -10,8 +10,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Launch date (15 days from now)
-launch_date = datetime.now() + timedelta(days=15)
+# Launch date (4 days from now)
+launch_date = datetime.now() + timedelta(days=4)
 
 # CSS
 st.markdown("""
