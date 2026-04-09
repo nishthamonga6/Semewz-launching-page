@@ -199,7 +199,7 @@ while True:
     remaining = launch_date - now
     
     if remaining.total_seconds() <= 0:
-        countdown_placeholder.markdown("<center><h3>The Collection is Live.</h3></center>", unsafe_allow_html=True)
+        countdown_placeholder.markdown("<center><h3>Launched — come visit us.</h3></center>", unsafe_allow_html=True)
         break
 
     days = remaining.days
