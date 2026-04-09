@@ -1,17 +1,12 @@
 import streamlit as st
 from PIL import Image
 import os
-from datetime import datetime, timedelta
-import time
 
 st.set_page_config(
-    page_title="SEMEWZ | Launching Soon",
+    page_title="SEMEWZ | Launched",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-
-# Launch date (4 days from now)
-launch_date = datetime.now() + timedelta(days=4)
 
 # CSS
 st.markdown("""
@@ -158,16 +153,13 @@ if os.path.exists("logo.png"):
 # 2. Hero Section
 st.markdown("""
 <div class="hero">
-    <h1>Launching Soon</h1>
+    <h1>Launched Come Visit Us</h1>
     <p>Where you become your own muse.<br>
     Timeless shirts & coords for polished comfort.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# 3. Countdown placeholder
-countdown_placeholder = st.empty()
-
-# 4. Static Features & Footer (Updated with Address & Phone)
+# 3. Static Features & Footer (Updated with Address & Phone)
 st.markdown("""
 <div class="features">
     <div class="feature-card">
@@ -193,39 +185,3 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# 5. Live Loop
-while True:
-    now = datetime.now()
-    remaining = launch_date - now
-    
-    if remaining.total_seconds() <= 0:
-        countdown_placeholder.markdown("<center><h3>Launched — come visit us.</h3></center>", unsafe_allow_html=True)
-        break
-
-    days = remaining.days
-    hours = remaining.seconds // 3600
-    minutes = (remaining.seconds % 3600) // 60
-    seconds = remaining.seconds % 60
-
-    countdown_placeholder.markdown(f"""
-    <div class="countdown">
-        <div class="time-box">
-            <div class="time-number">{days}</div>
-            <div class="time-label">DAYS</div>
-        </div>
-        <div class="time-box">
-            <div class="time-number">{hours}</div>
-            <div class="time-label">HOURS</div>
-        </div>
-        <div class="time-box">
-            <div class="time-number">{minutes}</div>
-            <div class="time-label">MINUTES</div>
-        </div>
-        <div class="time-box">
-            <div class="time-number">{seconds}</div>
-            <div class="time-label">SECONDS</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    time.sleep(1)
